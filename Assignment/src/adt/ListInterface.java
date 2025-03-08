@@ -11,6 +11,7 @@ package adt;
 public interface ListInterface <T>{
     
     public void addAtFront(T newData);
+    public void addAtEnd(T newData);
     public T getData();
     public void removeData();
     public T viewData();

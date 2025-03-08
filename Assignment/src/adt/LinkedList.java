@@ -14,6 +14,12 @@ public class LinkedList<T> implements ListInterface<T> {
     private Node headNode;
     private Node tailNode;
 
+    public LinkedList() {
+        this.noOfEntries = 0;
+        this.headNode = null;
+        this.tailNode = null;
+    }
+
     @Override
     public void addAtFront(T newData) {
         Node newNode = new Node(newData);
@@ -24,10 +30,26 @@ public class LinkedList<T> implements ListInterface<T> {
             newNode.next = headNode;
             headNode.prev = headNode;
             headNode = newNode;
-
         }
 
+        noOfEntries++;  // need update the size? i nt sure
     }
+
+    @Override
+    public void addAtEnd(T newData) {
+        Node newNode = new Node(newData);
+        if (tailNode == null) {
+            headNode = newNode;
+            tailNode = newNode;
+        } else {
+            newNode.prev = tailNode;
+            tailNode.next = newNode;
+            tailNode = newNode;
+        }
+        noOfEntries++;
+    }
+    
+    
 
     @Override
     public T getData() {
@@ -62,7 +84,9 @@ public class LinkedList<T> implements ListInterface<T> {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        noOfEntries = 0;
+        headNode = null;
+        tailNode = null;
     }
 
     private class Node {
